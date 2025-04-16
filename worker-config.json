@@ -1,0 +1,130 @@
+{
+  "schema": {
+    "MODEL_TYPE": {
+      "env_var_name": "MODEL_TYPE",
+      "value": "flux-dev",
+      "title": "Model Type",
+      "description": "UNO model type to use.",
+      "required": false,
+      "type": "select",
+      "options": [
+        { "value": "flux-dev", "label": "flux-dev" },
+        { "value": "flux-dev-fp8", "label": "flux-dev-fp8" },
+        { "value": "flux-schnell", "label": "flux-schnell" }
+      ]
+    },
+    "OFFLOAD": {
+      "env_var_name": "OFFLOAD",
+      "value": "False",
+      "title": "Offload to CPU",
+      "description": "Enable offloading model weights to CPU.",
+      "required": false,
+      "type": "toggle"
+    },
+    "ONLY_LORA": {
+      "env_var_name": "ONLY_LORA",
+      "value": "True",
+      "title": "Only LoRA",
+      "description": "Use only LoRA weights without full model.",
+      "required": false,
+      "type": "toggle"
+    },
+    "LORA_RANK": {
+      "env_var_name": "LORA_RANK",
+      "value": "512",
+      "title": "LoRA Rank",
+      "description": "Rank for LoRA layers.",
+      "required": false,
+      "type": "number"
+    },
+    "REF_SIZE": {
+      "env_var_name": "REF_SIZE",
+      "value": "-1",
+      "title": "Reference Image Size",
+      "description": "Resize reference image (-1 for auto).",
+      "required": false,
+      "type": "number"
+    },
+    "WIDTH": {
+      "env_var_name": "WIDTH",
+      "value": "512",
+      "title": "Output Width",
+      "description": "Width of generated image.",
+      "required": false,
+      "type": "number"
+    },
+    "HEIGHT": {
+      "env_var_name": "HEIGHT",
+      "value": "512",
+      "title": "Output Height",
+      "description": "Height of generated image.",
+      "required": false,
+      "type": "number"
+    },
+    "NUM_STEPS": {
+      "env_var_name": "NUM_STEPS",
+      "value": "25",
+      "title": "Sampling Steps",
+      "description": "Number of diffusion steps.",
+      "required": false,
+      "type": "number"
+    },
+    "GUIDANCE": {
+      "env_var_name": "GUIDANCE",
+      "value": "4.0",
+      "title": "Guidance Scale",
+      "description": "Classifier-free guidance scale.",
+      "required": false,
+      "type": "number"
+    },
+    "PE": {
+      "env_var_name": "PE",
+      "value": "d",
+      "title": "Positional Encoding",
+      "description": "Positional encoding mode ('d','h','w','o').",
+      "required": false,
+      "type": "select",
+      "options": [
+        { "value": "d", "label": "d" },
+        { "value": "h", "label": "h" },
+        { "value": "w", "label": "w" },
+        { "value": "o", "label": "o" }
+      ]
+    },
+    "HF_HUB_TOKEN": {
+      "env_var_name": "HF_HUB_TOKEN",
+      "value": "",
+      "title": "Hugging Face Token",
+      "description": "Token for downloading models.",
+      "required": true,
+      "type": "text"
+    }
+  },
+  "versions": {
+    "1.0.0": {
+      "imageName": "uno-api:latest",
+      "minimumCudaVersion": "12.2",
+      "categories": [
+        {
+          "title": "Model Settings",
+          "settings": [
+            "MODEL_TYPE",
+            "OFFLOAD",
+            "ONLY_LORA",
+            "LORA_RANK",
+            "REF_SIZE",
+            "WIDTH",
+            "HEIGHT",
+            "NUM_STEPS",
+            "GUIDANCE",
+            "PE"
+          ]
+        },
+        {
+          "title": "Access Tokens",
+          "settings": ["HF_HUB_TOKEN"]
+        }
+      ]
+    }
+  }
+}
